@@ -16,7 +16,7 @@ This project is a plugin template designed to provide a solid foundation for dev
 1. Install **cookiecutter** (`pip install cookiecutter`), if you haven't already.
 2. Clone the main [COVAS:NEXT](https://github.com/RatherRude/Elite-Dangerous-AI-Integration) repository and get it running.
 3. Open a terminal in the `plugins` sub-folder.
-4. Run `cookiecutter gh:MaverickMartyn/COVAS-NEXT-Plugin-Template` and follow the prompts.
+4. Run `cookiecutter gh:COVAS-Labs/COVAS-NEXT-Plugin-Template` and follow the prompts.
 6. Happy coding!
 
 ## Documentation
@@ -27,4 +27,4 @@ This project is a plugin template designed to provide a solid foundation for dev
 ## Acknowledgements
 
  - [COVAS:NEXT](https://github.com/RatherRude/Elite-Dangerous-AI-Integration)
- - [My other projects](https://github.com/MaverickMartyn)
+ - [MaverickMartyn's projects](https://github.com/MaverickMartyn)
