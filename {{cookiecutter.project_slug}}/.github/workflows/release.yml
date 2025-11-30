@@ -27,7 +27,7 @@ jobs:
           ./pack.sh
 
       - name: Rename artifact
-        run: mv dist/{{cookiecutter.project_slug}}.zip dist/{{cookiecutter.project_slug}}-linux.zip
+        run: mv dist/{{cookiecutter.project_slug}}.zip dist/{{cookiecutter.project_slug}}-{% raw %}${{ github.ref_name }}{% endraw %}-linux.zip
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
@@ -52,7 +52,7 @@ jobs:
         shell: pwsh
 
       - name: Rename artifact
-        run: Rename-Item -Path "dist\{{cookiecutter.project_slug}}Plugin.zip" -NewName "{{cookiecutter.project_slug}}-windows.zip"
+        run: Rename-Item -Path "dist\{{cookiecutter.project_slug}}Plugin.zip" -NewName "{{cookiecutter.project_slug}}-{% raw %}${{ github.ref_name }}{% endraw %}-windows.zip"
         shell: pwsh
 
       - name: Upload artifact
