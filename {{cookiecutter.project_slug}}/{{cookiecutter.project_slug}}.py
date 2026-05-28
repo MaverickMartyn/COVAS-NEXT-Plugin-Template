@@ -1,11 +1,12 @@
 from typing import override
 
-from lib.PluginHelper import PluginHelper, PluginManifest
-from lib.PluginSettingDefinitions import PluginSettings, SettingsGrid, SelectOption, TextAreaSetting, TextSetting, SelectSetting, NumericalSetting, ToggleSetting, ParagraphSetting
+from lib.PluginHelper import PluginHelper
+from lib.PluginSettingDefinitions import (
+    PluginSettings, SettingsGrid, SelectOption, TextAreaSetting, TextSetting, SelectSetting, NumericalSetting, ToggleSetting, ParagraphSetting
+)
 from lib.Logger import log
-from lib.EventManager import Projection
-from lib.PluginBase import PluginBase
-from lib.Event import Event
+from lib.PluginBase import PluginBase, PluginManifest
+
 
 # Main plugin class
 # This is the class that will be loaded by the PluginManager.
@@ -38,9 +39,8 @@ class {{cookiecutter.project_slug}}(PluginBase):
         )
     
     # The following overrides are optional. Remove them if you don't need them.
-
     @override
-    def register_actions(self, helper: PluginHelper):
+    def on_chat_start(self, helper: PluginHelper):
         # Register actions
         helper.register_action('{{cookiecutter.project_slug_lower}}_get_version', "Returns the current version of the {{cookiecutter.project_name}} plugin.", {
             "type": "object",
@@ -49,34 +49,6 @@ class {{cookiecutter.project_slug}}(PluginBase):
 
         log('debug', f"Actions registered for {self.plugin_manifest.name}")
         
-    @override
-    def register_projections(self, helper: PluginHelper):
-        # Register projections
-        pass
-
-    @override
-    def register_sideeffects(self, helper: PluginHelper):
-        # Register side effects
-        pass
-        
-    @override
-    def register_prompt_event_handlers(self, helper: PluginHelper):
-        # Register prompt generators
-        pass
-        
-    @override
-    def register_status_generators(self, helper: PluginHelper):
-        # Register prompt generators
-        pass
-
-    @override
-    def register_should_reply_handlers(self, helper: PluginHelper):
-        # Register should_reply handlers
-        pass
-    
-    @override
-    def on_plugin_helper_ready(self, helper: PluginHelper):
-        # Executed when the plugin helper is ready
         pass
     
     @override
