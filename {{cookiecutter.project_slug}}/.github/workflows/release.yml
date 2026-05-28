@@ -52,7 +52,7 @@ jobs:
         shell: pwsh
 
       - name: Rename artifact
-        run: Rename-Item -Path "dist\{{cookiecutter.project_slug}}Plugin.zip" -NewName "{{cookiecutter.project_slug}}-{% raw %}${{ github.ref_name }}{% endraw %}-windows.zip"
+        run: Rename-Item -Path "dist\{{cookiecutter.project_slug}}.zip" -NewName "{{cookiecutter.project_slug}}-{% raw %}${{ github.ref_name }}{% endraw %}-windows.zip"
         shell: pwsh
 
       - name: Upload artifact
