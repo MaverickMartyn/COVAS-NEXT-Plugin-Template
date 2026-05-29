@@ -26,6 +26,7 @@ Unpack the plugin into the `plugins` folder in the COVAS:NEXT AppData folder, le
 # Development
 During development, clone the COVAS:NEXT repository and place your plugin-project in the plugins folder.  
 Install the dependencies to your local .venv virtual environment using `pip`, by running this command in the `{{cookiecutter.project_slug}}` folder:
+
 ```bash
   pip install -r requirements.txt
 ```
@@ -33,7 +34,8 @@ Install the dependencies to your local .venv virtual environment using `pip`, by
 Follow the [COVAS:NEXT Plugin Development Guide](https://ratherrude.github.io/Elite-Dangerous-AI-Integration/plugins/Development/) for more information on developing plugins.
 
 ## Packaging
-Use the `./pack.ps1` or `./pack.sh` scripts to package the plugin and any Python dependencies in the `deps` folder.
+Use the `./pack.ps1` or `./pack.sh` scripts to package the plugin and any Python dependencies in the `deps` folder.  
+These scripts both use `uv` from [Astral/uv](https://docs.astral.sh/uv/).
 
 ## Releasing
 This project includes a GitHub Actions workflow that automatically creates releases. To create a new release:

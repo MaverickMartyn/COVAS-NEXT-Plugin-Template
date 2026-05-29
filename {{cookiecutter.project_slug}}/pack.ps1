@@ -1,18 +1,27 @@
+# Fail fast on errors
+$ErrorActionPreference = 'Stop'
+
 # Delete dist if it already exists
 if (Test-Path "dist") {
     Remove-Item -Recurse -Force "dist"
 }
 
 # Create dist
-New-Item "dist" -ItemType Directory
+New-Item "dist" -ItemType Directory | Out-Null
 
-# Install dependencies
+# Install dependencies using the active Python
 if (Test-Path "requirements.txt") {
-    pip install --target ./deps -r requirements.txt
+    & uv pip install --target ./deps -r requirements.txt --upgrade
+    if ($LASTEXITCODE -ne 0) {
+        exit $LASTEXITCODE
+    }
 }
 
 # Remember to add any additional files, and change the name of the plugin
-$artifacts = "{{cookiecutter.project_slug}}.py", "requirements.txt", "manifest.json", "__init__.py"
+$artifacts = "{{cookiecutter.project_slug}}.py",
+            "requirements.txt",
+            "manifest.json",
+            "__init__.py"
 
 if (Test-Path "deps") {
     $artifacts += "deps"
