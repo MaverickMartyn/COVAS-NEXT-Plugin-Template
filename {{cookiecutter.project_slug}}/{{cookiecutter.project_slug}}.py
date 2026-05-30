@@ -1,5 +1,7 @@
 from typing import override
 
+from pydantic import BaseModel, Field
+
 from lib.PluginHelper import PluginHelper
 from lib.PluginSettingDefinitions import (
     PluginSettings, SettingsGrid, SelectOption, TextAreaSetting, TextSetting, SelectSetting, NumericalSetting, ToggleSetting, ParagraphSetting
@@ -7,6 +9,10 @@ from lib.PluginSettingDefinitions import (
 from lib.Logger import log
 from lib.PluginBase import PluginBase, PluginManifest
 
+class DemoActionArgs(BaseModel):
+    demo_action_argument: str = Field(
+        description="An example argument."
+    )
 
 # Main plugin class
 # This is the class that will be loaded by the PluginManager.
@@ -42,10 +48,7 @@ class {{cookiecutter.project_slug}}(PluginBase):
     @override
     def on_chat_start(self, helper: PluginHelper):
         # Register actions
-        helper.register_action('{{cookiecutter.project_slug_lower}}_get_version', "Returns the current version of the {{cookiecutter.project_name}} plugin.", {
-            "type": "object",
-            "properties": {}
-        }, self.{{cookiecutter.project_slug_lower}}_get_version, 'global')
+        helper.register_action('{{cookiecutter.project_slug_lower}}_get_version', "Returns the current version of the {{cookiecutter.project_name}} plugin.", DemoActionArgs, self.{{cookiecutter.project_slug_lower}}_get_version, 'global')
 
         log('debug', f"Actions registered for {self.plugin_manifest.name}")
         
@@ -57,7 +60,7 @@ class {{cookiecutter.project_slug}}(PluginBase):
         pass
 
     # Actions
-    def {{cookiecutter.project_slug_lower}}_get_version(self, args, projected_states) -> str:
+    def {{cookiecutter.project_slug_lower}}_get_version(self, args: DemoActionArgs, projected_states) -> str:
         log('info', 'Hello World from {{cookiecutter.project_name}}!')
             
-        return f"Currently running {{cookiecutter.project_name}} version {self.plugin_manifest.version}."
+        return f"Currently running {{cookiecutter.project_name}} version {self.plugin_manifest.version}. Demo argument given: {args.demo_action_argument}"
